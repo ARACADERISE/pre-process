@@ -99,7 +99,7 @@
 /*
     typeof macro:
         - This macro checks the value of the number to each sm_int_min number, sm_int_max number
-          and um_int_max number. If it matches any of them sm/um types, it copies the type to 
+          and um_int_max number. If it matches any of the sm/um types, it copies the type to 
           returnType, prints the information to the screen, and the compilation of the macro
           ends.
 		- This macro works better when working with:
@@ -120,20 +120,20 @@
 strcpy((*(assignTo)),assignFrom);\
 fprintf(stdout,"TYPE: %s\n",assignFrom)
 
-// This macro is used in the macro Strict
+// This macro is used in the macro StrictUmMax/StrictSmMax
 #define PRINT_STRICT(assignTo,toPrint) \
 strcpy((*(assignTo)),"Strictly exact");\
 fprintf(stdout,"Stricty related to: %s\n",toPrint)
 // macro needed to check if they are stricly the same as the um_int_max value
 #define StrictUmMax(val,t) \
-	if(val==um_int2_max) {PRINT_STRICT(t,"um_int2_max");}else if(val==um_int4_max) {PRINT_STRICT(t,"um_int4_max");}\
-	else if(val==um_int6_max) {PRINT_STRICT(t,"um_int6_max");}else if(val==um_int8_max) {PRINT_STRICT(t,"um_int8_max");}\
-	else if(val==um_int16_max) {PRINT_STRICT(t,"um_int16_max");}else if(val==um_int20_max) {PRINT_STRICT(t,"um_int16_max");}\
-	else if(val==um_int24_max) {PRINT_STRICT(t,"um_int24_max");}else if(val==um_int28_max) {PRINT_STRICT(t,"um_int28_max");}\
-	else if(val==um_int30_max) {PRINT_STRICT(t,"um_int30_max");}else if(val==um_int32_max) {PRINT_STRICT(t,"um_int32_max");}\
-	else if(val==um_int40_max) {PRINT_STRICT(t,"um_int40_max");}else if(val==um_int64_max) {PRINT_STRICT(t,"um_int64_max");}
+	if(val==um_int2_max) {PRINT_STRICT(t,"um_int2_max");}if(val==um_int4_max) {PRINT_STRICT(t,"um_int4_max");}\
+	if(val==um_int6_max) {PRINT_STRICT(t,"um_int6_max");}if(val==um_int8_max) {PRINT_STRICT(t,"um_int8_max");}\
+	if(val==um_int16_max) {PRINT_STRICT(t,"um_int16_max");}if(val==um_int20_max) {PRINT_STRICT(t,"um_int16_max");}\
+	if(val==um_int24_max) {PRINT_STRICT(t,"um_int24_max");}if(val==um_int28_max) {PRINT_STRICT(t,"um_int28_max");}\
+	if(val==um_int30_max) {PRINT_STRICT(t,"um_int30_max");}if(val==um_int32_max) {PRINT_STRICT(t,"um_int32_max");}\
+	if(val==um_int40_max) {PRINT_STRICT(t,"um_int40_max");}if(val==um_int64_max>um_int2_max) {PRINT_STRICT(t,"um_int64_max");}
 
-// TO-DO: Finish this function. Should look exactly like the StrictUmMax macro
+// TO-DO: Finish this macro. Should look exactly like the StrictUmMax macro
 #define StrictSmMax(val,t) \
 	if(val==sm_int64_max) {PRINT_STRICT(t,"sm_int64_max");}
 
@@ -142,12 +142,16 @@ if(!(value==ZERO_BASED)) {\
 	/* Checking if the values are strictly related to defined numbers */\
 	StrictUmMax(value,returnType);\
 	StrictSmMax(value,returnType);\
-	if((value>=sm_int2_min&&!(value>um_int2_max))||!(value>=sm_int4_min||value<=sm_int4_max)){\
-		if(value<=um_int2_max&&value>-1){\
+	if((value>=sm_int2_min&&!(value>um_int2_max))){\
+		if(value<=um_int2_max&&value>-1) {\
+			if(value>sm_int2_max) {\
 				PRINT(returnType,"um_int2_max");\
 			} else {\
-				PRINT(returnType,"sm_int2_min");\
+				PRINT(returnType,"sm_int2_max");\
 			}\
+		} else {\
+			PRINT(returnType,"sm_int2_min");\
+		}\
 	}else if((value>=sm_int4_min&&!(value>um_int4_max))&&(value<sm_int6_max&&value>sm_int6_min)) {\
 		if(value<=um_int4_max&&value>-1) {\
 			if(value>sm_int4_max) {\
