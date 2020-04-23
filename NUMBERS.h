@@ -109,16 +109,24 @@ if(!(value==ZERO_BASED)) {\
             printf("um_int4_max:%d",value);\
             strcpy((*(returnType)),"um_int4_max");\
         } else{\
-            printf("um_int4_min:%d",value);\
+            printf("sm_int4_min:%d",value);\
             strcpy((*(returnType)),"sm_int4_min");\
         }\
-    } else if((value>=sm_int6_max&&!(value>sm_int4_max))||!(value>um_int6_max)){\
+    } else if((value>=sm_int6_max&&!(value>sm_int6_max))||!(value>um_int6_max)){\
         if(value<=um_int6_max&&value>-1){\
             printf("um_int6_max:%d",value);\
             strcpy((*(returnType)),"um_int6_max");\
         } else{\
             printf("sm_int6_min:%d",value);\
             strcpy((*(returnType)),"sm_int6_min");\
+        }\
+    } else if((value>=sm_int8_max&&!(value>sm_int8_max))||!(value>um_int8_max)){\
+        if(value<=um_int8_max&&value>-1){\
+            printf("um_int8_max:%d",value);\
+            strcpy((*(returnType)),"um_int8_max");\
+        } else {\
+            printf("sm_int8_min:%d",value);\
+            strcpy((*(returnType)),"sm_int8_min");\
         }\
     }\
 } else {\
