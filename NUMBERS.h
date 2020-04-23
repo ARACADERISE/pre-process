@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-/* Max sizes: SIGNED
+/* Max sizes
     - sm: Signed Maxed
     - um: Unsiged Maxed
 */
