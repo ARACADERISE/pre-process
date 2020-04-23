@@ -7,6 +7,9 @@
         - min ammount of um will always be zero
 */
 
+// zero based value
+#define ZERO_BASED       0
+
 // int2: signed: min/max
 #define sm_int2_min     -2
 #define sm_int2_max      2
@@ -92,7 +95,7 @@
 #define um_int64_max     18446744073709551615 // Don't really know what would need this big of a number
 
 #define typeof(value); \
-if(!(value==0)) {\
+if(!(value==ZERO_BASED)) {\
     if((value>=sm_int2_min&&!(value>sm_int2_max))||(!(value>um_int2_max))){\
         if(value<=um_int2_max&&value>-1){\
             printf("um_int2_max:%d",value);\
@@ -113,5 +116,5 @@ if(!(value==0)) {\
         }\
     }\
 } else {\
-    printf("Number %d cannot be detected",value);\
+    printf("ZERO_BASED:%d",value);\
 }
