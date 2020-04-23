@@ -84,6 +84,13 @@
 #define um_int40_min    0
 #define um_int40_max    1099511627776
 
+// int 64: signed: min/max
+#define sm_int64_min    -9223372036854775808
+#define sm_int64_max     9223372036854775807
+// unsigned: min/max
+#define um_int64_min     0
+#define um_int64_max     18446744073709551615 // Don't really know what would need this big of a number
+
 int main(void) {
     
 }
