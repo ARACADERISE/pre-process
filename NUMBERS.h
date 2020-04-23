@@ -139,56 +139,56 @@ if(!(value>um_int64_max)){\
 				PRINT(returnType,"sm_int8_min");\
             }\
         } else if((value>=sm_int16_min&&!(value>sm_int16_max))||!(value>um_int16_max)){\
-			if(value<=um_int16_max&&value>-1){\
-				PRINT(returnType,"um_int16_max");\
-			} else {\
-				PRINT(returnType,"sm_int16_min");\
-			}\
-		} else if((value>=sm_int20_min&&!(value>sm_int20_max))||!(value>um_int20_max)){\
-			if(value<=um_int20_max&&value>-1){\
-				PRINT(returnType,"um_int20_max");\
-			} else {\
-				PRINT(returnType,"sm_int20_min");\
-			}\
-		} else if((value>=sm_int24_min&&!(value>sm_int24_max))||!(value>um_int24_max)){\
-			if(value<=um_int24_max&&value>-1){\
-				PRINT(returnType,"um_int24_max");\
-			} else {\
-				PRINT(returnType,"sm_int24_min");\
-			}\
-		} else if((value>=sm_int28_min&&!(value>sm_int28_max))||!(value>um_int28_max)){\
-			if(value<=um_int28_max&&value>-1){\
-				PRINT(returnType,"um_int28_max");\
-			} else {\
-				PRINT(returnType,"sm_int28_min");\
-			}\
-		} else if((value>=sm_int30_min&&!(value>sm_int30_max))||!(value>um_int30_max)){\
-			if(value<=um_int30_max&&value>-1){\
-				PRINT(returnType,"um_int30_max");\
-			} else {\
-				PRINT(returnType,"sm_int30_min");\
-			}\
-		} else if((value>=sm_int32_min&&!(value>sm_int32_max))||!(value>um_int32_max)){\
-			if(value<=um_int32_max&&value>-1){\
-				PRINT(returnType,"um_int32_max");\
-			} else{\
-				PRINT(returnType,"sm_int32_min");\
-			}\
-		} else if((value>=sm_int40_min&&!(value>sm_int40_max))||!(value>um_int40_max)){\
-			if(value<=um_int40_max&&value>-1){\
-				PRINT(returnType,"um_int40_max");\
-			} else {\
-				PRINT(returnType,"sm_int40_min");\
-			}\
-		} else if((value>=sm_int64_min&&!(value>sm_int64_max))||!(value>um_int64_max)){\
-			if(value<=um_int64_max&&value>-1){\
-				PRINT(returnType,"um_int64_max");\
-			} else {\
-				PRINT(returnType,"sm_int64_min");\
-			}\
+		if(value<=um_int16_max&&value>-1){\
+			PRINT(returnType,"um_int16_max");\
+		} else {\
+			PRINT(returnType,"sm_int16_min");\
 		}\
+	} else if((value>=sm_int20_min&&!(value>sm_int20_max))||!(value>um_int20_max)){\
+		if(value<=um_int20_max&&value>-1){\
+			PRINT(returnType,"um_int20_max");\
+		} else {\
+			PRINT(returnType,"sm_int20_min");\
+		}\
+	} else if((value>=sm_int24_min&&!(value>sm_int24_max))||!(value>um_int24_max)){\
+		if(value<=um_int24_max&&value>-1){\
+			PRINT(returnType,"um_int24_max");\
+		} else {\
+			PRINT(returnType,"sm_int24_min");\
+		}\
+	} else if((value>=sm_int28_min&&!(value>sm_int28_max))||!(value>um_int28_max)){\
+		if(value<=um_int28_max&&value>-1){\
+			PRINT(returnType,"um_int28_max");\
+		} else {\
+			PRINT(returnType,"sm_int28_min");\
+		}\
+	} else if((value>=sm_int30_min&&!(value>sm_int30_max))||!(value>um_int30_max)){\
+		if(value<=um_int30_max&&value>-1){\
+			PRINT(returnType,"um_int30_max");\
+		} else {\
+			PRINT(returnType,"sm_int30_min");\
+		}\
+	} else if((value>=sm_int32_min&&!(value>sm_int32_max))||!(value>um_int32_max)){\
+		if(value<=um_int32_max&&value>-1){\
+			PRINT(returnType,"um_int32_max");\
+		} else{\
+			PRINT(returnType,"sm_int32_min");\
+		}\
+	} else if((value>=sm_int40_min&&!(value>sm_int40_max))||!(value>um_int40_max)){\
+		if(value<=um_int40_max&&value>-1){\
+			PRINT(returnType,"um_int40_max");\
+		} else {\
+			PRINT(returnType,"sm_int40_min");\
+		}\
+	} else if((value>=sm_int64_min&&!(value>sm_int64_max))||!(value>um_int64_max)){\
+		if(value<=um_int64_max&&value>-1){\
+			PRINT(returnType,"um_int64_max");\
+		} else {\
+			PRINT(returnType,"sm_int64_min");\
+		}\
+	}\
     } else {\
-		PRINT(returnType,"ZERO_BASED");\
+	PRINT(returnType,"ZERO_BASED");\
     }\
 } else {\
     fprintf(stderr,"\033[0;31mTOO LARGE OF A NUMBER");\
