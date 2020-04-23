@@ -90,11 +90,11 @@
 #define um_int40_max    1099511627776U
 
 // int 64: signed: min/max
-#define sm_int64_min    -9223372036854775808U
-#define sm_int64_max     9223372036854775807
+#define sm_int64_min    -9223372036854775807
+#define sm_int64_max     9223372036854775806
 // unsigned: min/max
 #define um_int64_min     0
-#define um_int64_max     18446744073709551615U // Don't really know what would need this big of a number
+#define um_int64_max     18446744073709551614U // Don't really know what would need this big of a number
 
 /*
     typeof macro:
@@ -125,135 +125,138 @@ fprintf(stdout,"TYPE: %s\n",assignFrom)
 strcpy((*(assignTo)),"Strictly exact");\
 fprintf(stdout,"Stricty related to: %s\n",toPrint)
 // macro needed to check if they are stricly the same as the um_int_max value
-#define StrictMax(val,t) \
-	if(val==um_int2_max) {PRINT_STRICT(t,"um_int2_max");}if(val==um_int4_max) {PRINT_STRICT(t,"um_int4_max");}\
-	if(val==um_int6_max) {PRINT_STRICT(t,"um_int6_max");}if(val==um_int8_max) {PRINT_STRICT(t,"um_int8_max");}\
-	if(val==um_int16_max) {PRINT_STRICT(t,"um_int16_max");}if(val==um_int20_max) {PRINT_STRICT(t,"um_int16_max");}\
-	if(val==um_int24_max) {PRINT_STRICT(t,"um_int24_max");}if(val==um_int28_max) {PRINT_STRICT(t,"um_int28_max");}\
-	if(val==um_int30_max) {PRINT_STRICT(t,"um_int30_max");}if(val==um_int32_max) {PRINT_STRICT(t,"um_int32_max");}\
-	if(val==um_int40_max) {PRINT_STRICT(t,"um_int40_max");}if(val==um_int64_max) {PRINT_STRICT(t,"um_int64_max");}
+#define StrictUmMax(val,t) \
+	if(val==um_int2_max) {PRINT_STRICT(t,"um_int2_max");}else if(val==um_int4_max) {PRINT_STRICT(t,"um_int4_max");}\
+	else if(val==um_int6_max) {PRINT_STRICT(t,"um_int6_max");}else if(val==um_int8_max) {PRINT_STRICT(t,"um_int8_max");}\
+	else if(val==um_int16_max) {PRINT_STRICT(t,"um_int16_max");}else if(val==um_int20_max) {PRINT_STRICT(t,"um_int16_max");}\
+	else if(val==um_int24_max) {PRINT_STRICT(t,"um_int24_max");}else if(val==um_int28_max) {PRINT_STRICT(t,"um_int28_max");}\
+	else if(val==um_int30_max) {PRINT_STRICT(t,"um_int30_max");}else if(val==um_int32_max) {PRINT_STRICT(t,"um_int32_max");}\
+	else if(val==um_int40_max) {PRINT_STRICT(t,"um_int40_max");}else if(val==um_int64_max) {PRINT_STRICT(t,"um_int64_max");}
+
+// TO-DO: Finish this function. Should look exactly like the StrictUmMax macro
+#define StrictSmMax(val,t) \
+	if(val==sm_int64_max) {PRINT_STRICT(t,"sm_int64_max");}
 
 #define typeof(value,returnType) \
 if(!(value==ZERO_BASED)) {\
 	/* Checking if the values are strictly related to defined numbers */\
-	StrictMax(value,returnType);\
-	if(!(strcmp(*returnType,"Strictly exact")==0)){\
-		if((value>=sm_int2_min&&!(value>um_int2_max))||!(value>=sm_int4_min||value<=sm_int4_max)){\
-			if(value<=um_int2_max&&value>-1){\
+	StrictUmMax(value,returnType);\
+	StrictSmMax(value,returnType);\
+	if((value>=sm_int2_min&&!(value>um_int2_max))||!(value>=sm_int4_min||value<=sm_int4_max)){\
+		if(value<=um_int2_max&&value>-1){\
 				PRINT(returnType,"um_int2_max");\
 			} else {\
 				PRINT(returnType,"sm_int2_min");\
 			}\
-		}else if((value>=sm_int4_min&&!(value>um_int4_max))&&(value<sm_int6_max&&value>sm_int6_min)) {\
-			if(value<=um_int4_max&&value>-1) {\
-				if(value>sm_int4_max) {\
-					PRINT(returnType,"um_int4_max");\
-				} else {\
-					PRINT(returnType,"sm_int4_max");\
-				}\
+	}else if((value>=sm_int4_min&&!(value>um_int4_max))&&(value<sm_int6_max&&value>sm_int6_min)) {\
+		if(value<=um_int4_max&&value>-1) {\
+			if(value>sm_int4_max) {\
+				PRINT(returnType,"um_int4_max");\
 			} else {\
-				PRINT(returnType,"sm_int4_min");\
-			}\
-		}else if((value>=sm_int6_min&&!(value>um_int6_max))&&(value<sm_int8_max||value>sm_int8_min)){\
-			if(value<=um_int6_max&&value>-1) {\
-				if(value>sm_int6_max) {\
-					PRINT(returnType,"um_int6_max");\
-				} else {\
-					PRINT(returnType,"sm_int6_max");\
+				PRINT(returnType,"sm_int4_max");\
 				}\
+		} else {\
+			PRINT(returnType,"sm_int4_min");\
+		}\
+	}else if((value>=sm_int6_min&&!(value>um_int6_max))&&(value<sm_int8_max||value>sm_int8_min)){\
+		if(value<=um_int6_max&&value>-1) {\
+			if(value>sm_int6_max) {\
+				PRINT(returnType,"um_int6_max");\
 			} else {\
-				PRINT(returnType,"sm_int8_min");\
+				PRINT(returnType,"sm_int6_max");\
 			}\
-		}else if((value>=sm_int8_min&&!(value>um_int8_max))&&(value<sm_int16_max||value>sm_int16_min)){\
-			if(value<=um_int8_max&&value>-1) {\
-				if(value>sm_int8_max) {\
-					PRINT(returnType,"um_int8_max");\
-				} else {\
-					PRINT(returnType,"sm_int8_max");\
-				}\
+		} else {\
+			PRINT(returnType,"sm_int8_min");\
+		}\
+	}else if((value>=sm_int8_min&&!(value>um_int8_max))&&(value<sm_int16_max||value>sm_int16_min)){\
+		if(value<=um_int8_max&&value>-1) {\
+			if(value>sm_int8_max) {\
+				PRINT(returnType,"um_int8_max");\
 			} else {\
-				PRINT(returnType,"sm_int8_min");\
+				PRINT(returnType,"sm_int8_max");\
 			}\
-		}else if((value>=sm_int16_min&&!(value>um_int16_max))&&(value<sm_int20_max&&value>sm_int20_min)){\
-			if(value<=um_int16_max&&value>-1) {\
-				if(value>sm_int16_max) {\
-					PRINT(returnType,"um_int16_max");\
-				} else {\
-					PRINT(returnType,"sm_int16_max");\
-				}\
+		} else {\
+			PRINT(returnType,"sm_int8_min");\
+		}\
+	}else if((value>=sm_int16_min&&!(value>um_int16_max))&&(value<sm_int20_max&&value>sm_int20_min)){\
+		if(value<=um_int16_max&&value>-1) {\
+			if(value>sm_int16_max) {\
+				PRINT(returnType,"um_int16_max");\
 			} else {\
-				PRINT(returnType,"sm_int16_min");\
+				PRINT(returnType,"sm_int16_max");\
 			}\
-		}else if((value>=sm_int20_min&&!(value>um_int20_max))&&(value<sm_int24_max&&value>sm_int24_min)) {\
-			if(value<=um_int24_max&&value>-1) {\
-				if(value>sm_int24_max) {\
-					PRINT(returnType,"um_int24_max");\
-				} else {\
-					PRINT(returnType,"sm_int24_max");\
-				}\
+		} else {\
+			PRINT(returnType,"sm_int16_min");\
+		}\
+	}else if((value>=sm_int20_min&&!(value>um_int20_max))&&(value<sm_int24_max&&value>sm_int24_min)) {\
+		if(value<=um_int24_max&&value>-1) {\
+			if(value>sm_int24_max) {\
+				PRINT(returnType,"um_int24_max");\
 			} else {\
-				PRINT(returnType,"sm_int24_min");\
+				PRINT(returnType,"sm_int24_max");\
 			}\
-		}else if((value>=sm_int24_min&&!(value>um_int24_max))&&(value<sm_int28_max&&value>sm_int28_min)){\
-			if(value<=um_int24_max&&value>-1) {\
-				if(value>sm_int24_max) {\
-					PRINT(returnType,"um_int24_max");\
-				} else {\
-					PRINT(returnType,"sm_int24_max");\
-				}\
+		} else {\
+			PRINT(returnType,"sm_int24_min");\
+		}\
+	}else if((value>=sm_int24_min&&!(value>um_int24_max))&&(value<sm_int28_max&&value>sm_int28_min)){\
+		if(value<=um_int24_max&&value>-1) {\
+			if(value>sm_int24_max) {\
+				PRINT(returnType,"um_int24_max");\
 			} else {\
-				PRINT(returnType,"sm_int24_min");\
+				PRINT(returnType,"sm_int24_max");\
 			}\
-		}else if((value>=sm_int28_min&&!(value>um_int28_max))&&(value<sm_int30_max&&value>sm_int30_min)){\
-			if(value<=um_int28_max&&value>-1) {\
-				if(value>sm_int28_max) {\
-					PRINT(returnType,"um_int28_max");\
-				} else {\
-					PRINT(returnType,"sm_int28_max");\
-				}\
+		} else {\
+			PRINT(returnType,"sm_int24_min");\
+		}\
+	}else if((value>=sm_int28_min&&!(value>um_int28_max))&&(value<sm_int30_max&&value>sm_int30_min)){\
+		if(value<=um_int28_max&&value>-1) {\
+			if(value>sm_int28_max) {\
+				PRINT(returnType,"um_int28_max");\
 			} else {\
-				PRINT(returnType,"sm_int28_min");\
+				PRINT(returnType,"sm_int28_max");\
 			}\
-		}else if((value>=sm_int30_min&&!(value>um_int30_max))&&(value<sm_int32_max&&value>sm_int32_min)){\
-			if(value<=um_int30_max&&value>-1) {\
-				if(value>sm_int40_max) {\
-					PRINT(returnType,"um_int40_max");\
-				} else {\
-					PRINT(returnType,"sm_int40_max");\
-				}\
+		} else {\
+			PRINT(returnType,"sm_int28_min");\
+		}\
+	}else if((value>=sm_int30_min&&!(value>um_int30_max))&&(value<sm_int32_max&&value>sm_int32_min)){\
+		if(value<=um_int30_max&&value>-1) {\
+			if(value>sm_int40_max) {\
+				PRINT(returnType,"um_int40_max");\
 			} else {\
-				PRINT(returnType,"sm_int40_min");\
+				PRINT(returnType,"sm_int40_max");\
 			}\
-		}else if((value>=sm_int32_min&&!(value>um_int32_max))&&(value<sm_int40_max&&value>sm_int40_min)){\
-			if(value<=um_int32_max&&value>-1) {\
-				if(value>sm_int32_max) {\
-					PRINT(returnType,"um_int32_max");\
-				} else {\
-					PRINT(returnType,"sm_int32_max");\
-				}\
+		} else {\
+			PRINT(returnType,"sm_int40_min");\
+		}\
+	}else if((value>=sm_int32_min&&!(value>um_int32_max))&&(value<sm_int40_max&&value>sm_int40_min)){\
+		if(value<=um_int32_max&&value>-1) {\
+			if(value>sm_int32_max) {\
+				PRINT(returnType,"um_int32_max");\
 			} else {\
-				PRINT(returnType,"sm_int32_min");\
+				PRINT(returnType,"sm_int32_max");\
 			}\
-		} else if((value>=sm_int40_min&&!(value>um_int40_max))&&(value<sm_int64_max&&value>sm_int64_min)) {\
-			if(value<=um_int40_max&&value>-1) {\
-				if(value>sm_int40_max) {\
-					PRINT(returnType,"um_int40_max");\
-				} else {\
-					PRINT(returnType,"sm_int40_max");\
-				}\
+		} else {\
+			PRINT(returnType,"sm_int32_min");\
+		}\
+	} else if((value>=sm_int40_min&&!(value>um_int40_max))&&(value<sm_int64_max&&value>sm_int64_min)) {\
+		if(value<=um_int40_max&&value>-1) {\
+			if(value>sm_int40_max) {\
+				PRINT(returnType,"um_int40_max");\
 			} else {\
-				PRINT(returnType,"sm_int40_min");\
+				PRINT(returnType,"sm_int40_max");\
 			}\
- 		} else if((value>=sm_int64_min&&!(value>sm_int64_max))&&!(value>um_int64_max)&&!(value>=sm_int2_min||value<=sm_int2_max)){\
-			if(value<=um_int64_max&&value>-1) {\
-				if(value>sm_int64_max) {\
-					PRINT(returnType,"um_int64_max");\
-				} else {\
-					PRINT(returnType,"sm_int64_max");\
-				}\
+		} else {\
+			PRINT(returnType,"sm_int40_min");\
+		}\
+ 	} else if((value>=sm_int64_min&&!(value>um_int64_max))){\
+		if(value<=um_int64_max&&value>-1) {\
+			if(value>sm_int64_max) {\
+				PRINT(returnType,"um_int64_max");\
 			} else {\
-				PRINT(returnType,"sm_int64_min");\
+				PRINT(returnType,"sm_int64_max");\
 			}\
+		} else {\
+			PRINT(returnType,"sm_int64_min");\
 		}\
 	}\
 } else {\
