@@ -90,3 +90,26 @@
 // unsigned: min/max
 #define um_int64_min     0
 #define um_int64_max     18446744073709551615 // Don't really know what would need this big of a number
+
+#define typeof(value); \
+/*CHECKING NEGATIVES*/\
+if(value < 0) {\
+    if(value>=sm_int2_min&&!(value>sm_int2_max)){\
+        if(value<sm_int2_max&&value>0){\
+            printf("sm_int2_max:%d",value);\
+        } else {\
+            printf("sm_int2_min:%d",value);\
+        }\
+    } else if(value>=sm_int4_min&&!(value>sm_int4_max)) {\
+        if(value<sm_int4_max&&value>0) {\
+            printf("sm_int4_max:%d",value);\
+        } else {\
+            printf("sm_int4_min:%d",value);\
+        }\
+    } else {\
+        /* Meaning it is in the sm_int2_min/sm_int2_max range */\
+        if(value>=sm_int2_min&&!(value>sm_int2_max)){\
+            printf("sm_int2_min/sm_int2_max");\
+        }\
+    }\
+}
