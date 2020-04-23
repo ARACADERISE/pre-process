@@ -19,7 +19,7 @@
 #define sm_int4_max      4
 // unsigned: min/max
 #define um_int4_min      0
-#define um_int4_ma       8
+#define um_int4_max      8
 
 // int6: signed: min/max
 #define sm_int6_min     -62
@@ -83,3 +83,7 @@
 // unsigned: min/max
 #define um_int40_min    0
 #define um_int40_max    1099511627776
+
+int main(void) {
+    
+}
