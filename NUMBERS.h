@@ -94,27 +94,34 @@
 #define um_int64_min     0
 #define um_int64_max     18446744073709551615 // Don't really know what would need this big of a number
 
-#define typeof(value); \
+#define typeof(value,returnType); \
 if(!(value==ZERO_BASED)) {\
     if((value>=sm_int2_min&&!(value>sm_int2_max))||(!(value>um_int2_max))){\
         if(value<=um_int2_max&&value>-1){\
             printf("um_int2_max:%d",value);\
+            strcpy((*(returnType)),"um_int2_max");\
         } else{\
             printf("sm_int2_min:%d",value);\
+            strcpy((*(returnType)),"sm_int2_min");\
         }\
     } else if((value>=sm_int4_min&&!(value>sm_int4_max))||(!(value>um_int4_max))) {\
         if(value<=um_int4_max&&value>-1){\
             printf("um_int4_max:%d",value);\
+            strcpy((*(returnType)),"um_int4_max");\
         } else{\
             printf("um_int4_min:%d",value);\
+            strcpy((*(returnType)),"sm_int4_min");\
         }\
     } else if((value>=sm_int6_max&&!(value>sm_int4_max))||!(value>um_int6_max)){\
         if(value<=um_int6_max&&value>-1){\
             printf("um_int6_max:%d",value);\
+            strcpy((*(returnType)),"um_int6_max");\
         } else{\
             printf("sm_int6_min:%d",value);\
+            strcpy((*(returnType)),"sm_int6_min");\
         }\
     }\
 } else {\
     printf("ZERO_BASED:%d",value);\
+    strcpy((*(returnType)),"ZeroBasedValue");\
 }
