@@ -146,7 +146,7 @@ if(!(value==ZERO_BASED)) {\
 	/* Checking if the values are strictly related to defined numbers */\
 	StrictUmMax(value,returnType);\
 	StrictSmMax(value,returnType);\
-	if(!(strcmp(returnType,"Strictly exact")==0)) {\
+	if(!(strcmp(*returnType,"Strictly exact")==0)) {\
 		if((value>=sm_int2_min&&!(value>um_int2_max))){\
 			if(value<=um_int2_max&&value>-1) {\
 				if(value>sm_int2_max) {\
