@@ -133,9 +133,13 @@ fprintf(stdout,"Stricty related to: %s\n",toPrint)
 	if(val==um_int30_max) {PRINT_STRICT(t,"um_int30_max");}if(val==um_int32_max) {PRINT_STRICT(t,"um_int32_max");}\
 	if(val==um_int40_max) {PRINT_STRICT(t,"um_int40_max");}if(val==um_int64_max>um_int2_max) {PRINT_STRICT(t,"um_int64_max");}
 
-// TO-DO: Finish this macro. Should look exactly like the StrictUmMax macro
 #define StrictSmMax(val,t) \
-	if(val==sm_int64_max) {PRINT_STRICT(t,"sm_int64_max");}
+	if(val==sm_int2_max) {PRINT_STRICT(t,"sm_int2_max");}if(val==sm_int4_max) {PRINT_STRICT(t,"sm_int4_max");}\
+	if(val==sm_int6_max) {PRINT_STRICT(t,"sm_int6_max");}if(val==sm_int8_max) {PRINT_STRICT(t,"sm_int8_max");}\
+	if(val==sm_int16_max) {PRINT_STRICT(t,"sm_int16_max");}if(val==sm_int20_max) {PRINT_STRICT(t,"sm_int20_max");}\
+	if(val==sm_int24_max) {PRINT_STRICT(t,"sm_int24_max");}if(val==sm_int28_max) {PRINT_STRICT(t,"sm_int28_max");}\
+	if(val==sm_int30_max) {PRINT_STRICT(t,"sm_int30_max");}if(val==sm_int32_max) {PRINT_STRICT(t,"sm_int32_max");}\
+	if(val==sm_int40_max) {PRINT_STRICT(t,"sm_int40_max");}if(val==sm_int64_max) {PRINT_STRICT(t,"sm_int64_max");}
 
 #define typeof(value,returnType) \
 if(!(value==ZERO_BASED)) {\
