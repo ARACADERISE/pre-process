@@ -83,18 +83,18 @@
 #define um_int32_max    4294967295U
 
 // int 34: signed: min/max
-#define sm_int40_min   -549755813889
+#define sm_int40_min   -549755813889U
 #define sm_int40_max    549755813887U
 // unsigned: min/max
 #define um_int40_min    0
 #define um_int40_max    1099511627776U
 
 // int 64: signed: min/max
-#define sm_int64_min    -9223372036854775808
-#define sm_int64_max     9223372036854775807U
+#define sm_int64_min    -9223372036854775800U
+#define sm_int64_max     9223372036854775800U
 // unsigned: min/max
 #define um_int64_min     0
-#define um_int64_max     18446744073709551615U // Don't really know what would need this big of a number
+#define um_int64_max     1844674407370955190U // Don't really know what would need this big of a number
 
 /*
     typeof macro:
@@ -105,48 +105,93 @@
         
         !NOTE: This macro can take in only one number of the max size of 64 bits
 */
+
+// macro needed to assign the type and print the type
+#define PRINT(assignTo,assignFrom,...) \
+strcpy((*(assignTo)),assignFrom);\
+fprintf(stdout,"%s",assignFrom)
+
 #define typeof(value,returnType) \
 if(!(value>um_int64_max)){\
     if(!(value==ZERO_BASED)) {\
         if((value>=sm_int2_min&&!(value>sm_int2_max))||(!(value>um_int2_max))){\
             if(value<=um_int2_max&&value>-1){\
-                printf("um_int2_max");\
-                strcpy((*(returnType)),"um_int2_max");\
+				PRINT(returnType,"um_int2_max");\
             } else{\
-                printf("sm_int2_min");\
-                strcpy((*(returnType)),"sm_int2_min");\
+				PRINT(returnType,"sm_int2_min");\
             }\
         } else if((value>=sm_int4_min&&!(value>sm_int4_max))||(!(value>um_int4_max))) {\
             if(value<=um_int4_max&&value>-1){\
-                printf("um_int4_max");\
-                strcpy((*(returnType)),"um_int4_max");\
+				PRINT(returnType,"um_int4_max");\
             } else{\
-                printf("sm_int4_min");\
-                strcpy((*(returnType)),"sm_int4_min");\
+				PRINT(returnType,"sm_int4_min");\
             }\
-        } else if((value>=sm_int6_max&&!(value>sm_int6_max))||!(value>um_int6_max)){\
+        } else if((value>=sm_int6_min&&!(value>sm_int6_max))||!(value>um_int6_max)){\
             if(value<=um_int6_max&&value>-1){\
-                printf("um_int6_max");\
-                strcpy((*(returnType)),"um_int6_max");\
+				PRINT(returnType,"um_int6_max");\
             } else{\
-                printf("sm_int6_min");\
-                strcpy((*(returnType)),"sm_int6_min");\
+				PRINT(returnType,"sm_int6_min");\
             }\
-        } else if((value>=sm_int8_max&&!(value>sm_int8_max))||!(value>um_int8_max)){\
+        } else if((value>=sm_int8_min&&!(value>sm_int8_max))||!(value>um_int8_max)){\
             if(value<=um_int8_max&&value>-1){\
-                printf("um_int8_max");\
-                strcpy((*(returnType)),"um_int8_max");\
+				PRINT(returnType,"um_int8_max");\
             } else {\
-                printf("sm_int8_min");\
-                strcpy((*(returnType)),"sm_int8_min");\
+				PRINT(returnType,"sm_int8_min");\
             }\
-        }\
+        } else if((value>=sm_int16_min&&!(value>sm_int16_max))||!(value>um_int16_max)){\
+			if(value<=um_int16_max&&value>-1){\
+				PRINT(returnType,"um_int16_max");\
+			} else {\
+				PRINT(returnType,"sm_int16_min");\
+			}\
+		} else if((value>=sm_int20_min&&!(value>sm_int20_max))||!(value>um_int20_max)){\
+			if(value<=um_int20_max&&value>-1){\
+				PRINT(returnType,"um_int20_max");\
+			} else {\
+				PRINT(returnType,"sm_int20_min");\
+			}\
+		} else if((value>=sm_int24_min&&!(value>sm_int24_max))||!(value>um_int24_max)){\
+			if(value<=um_int24_max&&value>-1){\
+				PRINT(returnType,"um_int24_max");\
+			} else {\
+				PRINT(returnType,"sm_int24_min");\
+			}\
+		} else if((value>=sm_int28_min&&!(value>sm_int28_max))||!(value>um_int28_max)){\
+			if(value<=um_int28_max&&value>-1){\
+				PRINT(returnType,"um_int28_max");\
+			} else {\
+				PRINT(returnType,"sm_int28_min");\
+			}\
+		} else if((value>=sm_int30_min&&!(value>sm_int30_max))||!(value>um_int30_max)){\
+			if(value<=um_int30_max&&value>-1){\
+				PRINT(returnType,"um_int30_max");\
+			} else {\
+				PRINT(returnType,"sm_int30_min");\
+			}\
+		} else if((value>=sm_int32_min&&!(value>sm_int32_max))||!(value>um_int32_max)){\
+			if(value<=um_int32_max&&value>-1){\
+				PRINT(returnType,"um_int32_max");\
+			} else{\
+				PRINT(returnType,"sm_int32_min");\
+			}\
+		} else if((value>=sm_int40_min&&!(value>sm_int40_max))||!(value>um_int40_max)){\
+			if(value<=um_int40_max&&value>-1){\
+				PRINT(returnType,"um_int40_max");\
+			} else {\
+				PRINT(returnType,"sm_int40_min");\
+			}\
+		} else if((value>=sm_int64_min&&!(value>sm_int64_max))||!(value>um_int64_max)){\
+			if(value<=um_int64_max&&value>-1){\
+				PRINT(returnType,"um_int64_max");\
+			} else {\
+				PRINT(returnType,"sm_int64_min");\
+			}\
+		}\
     } else {\
-        printf("ZERO_BASED");\
-        strcpy((*(returnType)),"ZeroBasedValue");\
+		PRINT(returnType,"ZERO_BASED");\
     }\
 } else {\
     fprintf(stderr,"\033[0;31mTOO LARGE OF A NUMBER");\
     strcpy((*(returnType)),"Too large of a number");\
     exit(EXIT_FAILURE);\
-}\
+}
