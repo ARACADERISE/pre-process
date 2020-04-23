@@ -126,18 +126,12 @@ strcpy((*(assignTo)),"Strictly exact");\
 fprintf(stdout,"Stricty related to: %s\n",toPrint)
 // macro needed to check if they are stricly the same as the um_int_max value
 #define StrictMax(val,t) \
-	if(val==um_int2_max) {PRINT_STRICT(t,"um_int2_max");}\
-	if(val==um_int4_max) {PRINT_STRICT(t,"um_int4_max");}\
-	if(val==um_int6_max) {PRINT_STRICT(t,"um_int6_max");}\
-	if(val==um_int8_max) {PRINT_STRICT(t,"um_int8_max");}\
-	if(val==um_int16_max) {PRINT_STRICT(t,"um_int16_max");}\
-	if(val==um_int20_max) {PRINT_STRICT(t,"um_int16_max");}\
-	if(val==um_int24_max) {PRINT_STRICT(t,"um_int24_max");}\
-	if(val==um_int28_max) {PRINT_STRICT(t,"um_int28_max");}\
-	if(val==um_int30_max) {PRINT_STRICT(t,"um_int30_max");}\
-	if(val==um_int32_max) {PRINT_STRICT(t,"um_int32_max");}\
-	if(val==um_int40_max) {PRINT_STRICT(t,"um_int40_max");}\
-	if(val==um_int64_max) {PRINT_STRICT(t,"um_int64_max");}
+	if(val==um_int2_max) {PRINT_STRICT(t,"um_int2_max");}if(val==um_int4_max) {PRINT_STRICT(t,"um_int4_max");}\
+	if(val==um_int6_max) {PRINT_STRICT(t,"um_int6_max");}if(val==um_int8_max) {PRINT_STRICT(t,"um_int8_max");}\
+	if(val==um_int16_max) {PRINT_STRICT(t,"um_int16_max");}if(val==um_int20_max) {PRINT_STRICT(t,"um_int16_max");}\
+	if(val==um_int24_max) {PRINT_STRICT(t,"um_int24_max");}if(val==um_int28_max) {PRINT_STRICT(t,"um_int28_max");}\
+	if(val==um_int30_max) {PRINT_STRICT(t,"um_int30_max");}if(val==um_int32_max) {PRINT_STRICT(t,"um_int32_max");}\
+	if(val==um_int40_max) {PRINT_STRICT(t,"um_int40_max");}if(val==um_int64_max) {PRINT_STRICT(t,"um_int64_max");}
 
 #define typeof(value,returnType) \
 if(!(value==ZERO_BASED)) {\
