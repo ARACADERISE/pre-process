@@ -90,7 +90,3 @@
 // unsigned: min/max
 #define um_int64_min     0
 #define um_int64_max     18446744073709551615 // Don't really know what would need this big of a number
-
-int main(void) {
-    
-}
